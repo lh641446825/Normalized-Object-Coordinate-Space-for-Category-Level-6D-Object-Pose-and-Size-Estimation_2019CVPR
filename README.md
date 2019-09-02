@@ -32,8 +32,10 @@
 <font size=4> &#160; &#160; &#160; &#160;作者增加的分支分别预测NOCS图的x、y、z坐标，通过回归每个像素值或者离散化像素值，把它当做一个分类问题。实验表明，图4中B=32的像素分类比直接回归更好.
  ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190902195624.png?raw=true)
 **损失函数**
+ 
 <font size=4> &#160; &#160; &#160; &#160;网络中的类别、边界框和mask使用的损失函数与Mask R-CNN相同，NOCS部分作者使用了两个损失函数：一个标准的softmax用于分类，另一个softL1函数用于回归。
  ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190902201452.png?raw=true)
+
 其中y是ground truth NOCS图像素值，y*是预测的NOCS图像素值，n为感兴趣区域内的mask像素个数。
  
 ## 数据集
