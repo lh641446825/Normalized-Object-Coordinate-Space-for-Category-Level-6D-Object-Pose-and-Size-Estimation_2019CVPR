@@ -54,6 +54,31 @@
 ## 6D位姿和尺寸估计
 
 <font size=4> &#160; &#160; &#160; &#160;作者的目标是通过使用NOCS图和深度图来估计被检测物体的6D位姿和大小。为此，作者使用RGB-D相机内参和外参来将深度图像与彩色图像对齐，使用预测的物体mask来获得物体的3D点云Pm，使用NOCS图来获得预测位姿Pn。然后，估计将Pn转换为Pm的比例、旋转和平移。对于这个7维刚性变换估计问题，作者使用Umeyama算法，而对于离群点去除，作者使用RANSAC。
+ 
+ ## 实验和结果
+<font size=4> &#160; &#160; &#160; &#160;作者使用IoU来评估三维目标检测和尺寸的估计，使用平均精度来评估平移误差小于m厘米，旋转误差小于n°的物体位姿估计。将目标检测与位姿估计解耦，将检测阈值设为10%来保证大部分物体都包含在评估中。因为不知道其他类别级6D位姿和大小估计的方法，所以作者使用Mask RCNN+ICP建立baseline来帮助比较性能。
+<font size=4> &#160; &#160; &#160; &#160;在合成数据集（CAMERA*）上测试:对于50%的3D IoU，mAP为83.9%，位姿使用(5cm，5°)度量，mAP为40.9%。
+![](https://img-blog.csdnimg.cn/20190903222554175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+<center>图6 合成测试集的结果
+
+<font size=4> &#160; &#160; &#160; &#160;在真实数据集（REAL）上测试:在COCO的弱监督下，使用CAMERA* 与REAL* 共同训练网络，并在真实世界的测试集中对其进行评估。由于COCO没有ground truth NOCS图，在训练中不使用NOCS损失。为了平衡这些数据集，作者从三个数据源中为每个小批次选择图像，CAMERA* 的概率为60%，COCO 为20%，REAL*为20%。对于50%的3D IoU， mAP为76.4%，位姿使用(5cm，5°)，mAP为10.2%，使用(5cm，10°) ，mAP为23.1%。相比之下，baseline在50%的3D IoU时，mAP为43.8%，而(5cm，5°)和(5cm，10°)的mAP为0.8%，明显低于本文的性能。
+![](https://img-blog.csdnimg.cn/20190903222734350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+<center>图7 真实测试集的结果
+
+<font size=4  > &#160; &#160; &#160; &#160;作者还创建了一个CAMERA* 的变体，其中图像是以非上下文感知的方式合成的(在表1中由B表示)。如表中所示，仅在REAL* 或REAL* 和COCO上进行培训，由于数据集较小，会产生过拟合。CAMERA* 与COCO和REAL* 一起进行训练，可以获得最佳效果。
+
+![](https://img-blog.csdnimg.cn/20190903222837236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+
+<font size=4> 作者给出了5个不同指标的AP，其中3D25和3D25分别代表25%和50%的3D IoU。
+
+<font size=4> &#160; &#160; &#160; &#160;作者还与PoseCNN进行了比较。使用2D重投影误差（测量ground truth和估计目标位姿之间的平均像素距离小于5个像素），作者的方法2D重投影误差的mAP为30.2%。PoseCNN 2D重投影误差的mAP为17.2%。
+![](https://img-blog.csdnimg.cn/20190903224406311.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)<center>图8 与最新的方法效果对比
+## 不足
+
+<font size=4> &#160; &#160; &#160; &#160;存在缺失检测、错误分类和预测坐标图不一致。
+![](https://img-blog.csdnimg.cn/20190903225032776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+![](https://img-blog.csdnimg.cn/20190903225051874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+ 
 
 ## 代码
 
