@@ -71,7 +71,7 @@
 <font size=4> 作者给出了5个不同指标的AP，其中3D25和3D25分别代表25%和50%的3D IoU。
 
 <font size=4> &#160; &#160; &#160; &#160;作者还与PoseCNN进行了比较。使用2D重投影误差（测量ground truth和估计目标位姿之间的平均像素距离小于5个像素），作者的方法2D重投影误差的mAP为30.2%。PoseCNN 2D重投影误差的mAP为17.2%。
-![]()
+![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903222420.png?raw=true)
  
 ## 不足
 
