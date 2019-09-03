@@ -54,4 +54,33 @@
 
 <font size=4> &#160; &#160; &#160; &#160;作者的目标是通过使用NOCS图和深度图来估计被检测物体的6D位姿和大小。为此，作者使用RGB-D相机内参和外参来将深度图像与彩色图像对齐，使用预测的物体mask来获得物体的3D点云Pm，使用NOCS图来获得预测位姿Pn。然后，估计将Pn转换为Pm的比例、旋转和平移。对于这个7维刚性变换估计问题，作者使用Umeyama算法，而对于离群点去除，作者使用RANSAC。
 
-  
+## 代码
+
+### 环境要求：
+
+<font size=4> •	cuda80（作者没有提到这个问题，但是我在cuda90上运行会报错）
+•	Python 3.5
+•	Tensorflow 1.3.0
+•	Keras 2.1.5
+•	cPickle
+
+### 训练：
+
+<font size=4> &#160; &#160; &#160; &#160;训练时会报错：ImportError：No module named ‘visualize’。 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903161012347.jpg#pic_center)
+<font size=4> &#160; &#160; &#160; &#160;原因是作者没有将[<font color=red size=4>Mask-RCNN代码](https://codeload.github.com/matterport/Mask_RCNN/zip/master)</font>中的visualize.py文件打包，但是从pycharm上可以看到import visualize是灰色的，作者并没有用到，所以我就先把import visualize注释掉了。
+预训练的COCO权重mask_rcnn_coco.h5作者也没有提供，下载地址：[<font color=red size=4>mask_rcnn_coco.h5](https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5)</font>下载之后放在logs文件夹内。
+
+### 测试
+<font size=4> &#160; &#160; &#160; &#160;测试结果部分截图：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903162015980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903162059167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+
+> <font
+> size=4>本文作者：耗子
+> github：[https://github.com/lh641446825](https://github.com/lh641446825)
+> <font
+> size=4>知乎：[https://www.zhihu.com/people/hao-zi-meng-jian-mao/activities](https://www.zhihu.com/people/hao-zi-meng-jian-mao/activities)
+> 博客园：[https://www.cnblogs.com/lh641446825/](https://www.cnblogs.com/lh641446825/)
+> 欢迎关注！
+<font color=blue size=5>**如需转载请联系641446825@qq.com。**
