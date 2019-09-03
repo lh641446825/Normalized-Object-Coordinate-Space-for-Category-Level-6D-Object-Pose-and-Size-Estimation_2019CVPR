@@ -43,7 +43,8 @@
 
 <font size=4> &#160; &#160; &#160; &#160;作者增加的分支分别预测NOCS图的x、y、z坐标，通过回归每个像素值或者离散化像素值，把它当做一个分类问题。实验表明，图4中B=32的像素分类比直接回归更好.
  ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190902195624.png?raw=true)
-**损失函数**
+
+### 损失函数
  
 <font size=4> &#160; &#160; &#160; &#160;网络中的类别、边界框和mask使用的损失函数与Mask R-CNN相同，NOCS部分作者使用了两个损失函数：一个标准的softmax用于分类，另一个softL1函数用于回归。
  ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190902201452.png?raw=true)
@@ -67,20 +68,13 @@
 ### 训练：
 
 <font size=4> &#160; &#160; &#160; &#160;训练时会报错：ImportError：No module named ‘visualize’。 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903161012347.jpg#pic_center)
+![](https://github.com/lh641446825/picture/blob/master/1524330-20190903165228019-1838692003.jpg?raw=true)
 <font size=4> &#160; &#160; &#160; &#160;原因是作者没有将[<font color=red size=4>Mask-RCNN代码](https://codeload.github.com/matterport/Mask_RCNN/zip/master)</font>中的visualize.py文件打包，但是从pycharm上可以看到import visualize是灰色的，作者并没有用到，所以我就先把import visualize注释掉了。
 预训练的COCO权重mask_rcnn_coco.h5作者也没有提供，下载地址：[<font color=red size=4>mask_rcnn_coco.h5](https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5)</font>下载之后放在logs文件夹内。
 
 ### 测试
 <font size=4> &#160; &#160; &#160; &#160;测试结果部分截图：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903162015980.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903162059167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xoNjQxNDQ2ODI1,size_16,color_FFFFFF,t_70#pic_center)
+![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903152915.png?raw=true)
+![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903153113.png?raw=true)
 
-> <font
-> size=4>本文作者：耗子
-> github：[https://github.com/lh641446825](https://github.com/lh641446825)
-> <font
-> size=4>知乎：[https://www.zhihu.com/people/hao-zi-meng-jian-mao/activities](https://www.zhihu.com/people/hao-zi-meng-jian-mao/activities)
-> 博客园：[https://www.cnblogs.com/lh641446825/](https://www.cnblogs.com/lh641446825/)
-> 欢迎关注！
-<font color=blue size=5>**如需转载请联系641446825@qq.com。**
+
