@@ -61,9 +61,13 @@
 
 <font size=4> 
  •	cuda80（作者没有提到这个问题，但是我在cuda90上运行会报错）
+ 
  •	Python 3.5
+ 
  •	Tensorflow 1.3.0
+ 
  •	Keras 2.1.5
+ 
  •	cPickle
 
 ### 训练：
