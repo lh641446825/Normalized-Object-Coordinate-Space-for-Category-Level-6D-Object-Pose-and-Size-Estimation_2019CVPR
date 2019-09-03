@@ -59,11 +59,12 @@
 
 ### 环境要求：
 
-<font size=4> •	cuda80（作者没有提到这个问题，但是我在cuda90上运行会报错）
-•	Python 3.5
-•	Tensorflow 1.3.0
-•	Keras 2.1.5
-•	cPickle
+<font size=4> 
+ •	cuda80（作者没有提到这个问题，但是我在cuda90上运行会报错）
+ •	Python 3.5
+ •	Tensorflow 1.3.0
+ •	Keras 2.1.5
+ •	cPickle
 
 ### 训练：
 
@@ -74,6 +75,7 @@
 
 ### 测试
 <font size=4> &#160; &#160; &#160; &#160;测试结果部分截图：
+ 
 ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903152915.png?raw=true)
 ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903153113.png?raw=true)
 
