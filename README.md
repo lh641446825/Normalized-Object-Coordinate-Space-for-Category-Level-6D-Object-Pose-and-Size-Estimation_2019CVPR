@@ -57,13 +57,14 @@
  
  ## 实验和结果
 <font size=4> &#160; &#160; &#160; &#160;作者使用IoU来评估三维目标检测和尺寸的估计，使用平均精度来评估平移误差小于m厘米，旋转误差小于n°的物体位姿估计。将目标检测与位姿估计解耦，将检测阈值设为10%来保证大部分物体都包含在评估中。因为不知道其他类别级6D位姿和大小估计的方法，所以作者使用Mask RCNN+ICP建立baseline来帮助比较性能。
+ 
 <font size=4> &#160; &#160; &#160; &#160;在合成数据集（CAMERA*）上测试:对于50%的3D IoU，mAP为83.9%，位姿使用(5cm，5°)度量，mAP为40.9%。
 ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903214312.png?raw=true)
 
 <font size=4> &#160; &#160; &#160; &#160;在真实数据集（REAL）上测试:在COCO的弱监督下，使用CAMERA* 与REAL* 共同训练网络，并在真实世界的测试集中对其进行评估。由于COCO没有ground truth NOCS图，在训练中不使用NOCS损失。为了平衡这些数据集，作者从三个数据源中为每个小批次选择图像，CAMERA* 的概率为60%，COCO 为20%，REAL*为20%。对于50%的3D IoU， mAP为76.4%，位姿使用(5cm，5°)，mAP为10.2%，使用(5cm，10°) ，mAP为23.1%。相比之下，baseline在50%的3D IoU时，mAP为43.8%，而(5cm，5°)和(5cm，10°)的mAP为0.8%，明显低于本文的性能。
 ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903215657.png?raw=true)
 
-<font size=4  > &#160; &#160; &#160; &#160;作者还创建了一个CAMERA* 的变体，其中图像是以非上下文感知的方式合成的(在表1中由B表示)。如表中所示，仅在REAL* 或REAL* 和COCO上进行培训，由于数据集较小，会产生过拟合。CAMERA* 与COCO和REAL* 一起进行训练，可以获得最佳效果。
+<font size=4  > &#160; &#160; &#160; &#160;作者还创建了一个CAMERA* 的变体，其中图像是以非上下文感知的方式合成的(在表中由B表示)。如表中所示，仅在REAL* 或REAL* 和COCO上进行培训，由于数据集较小，会产生过拟合。CAMERA* 与COCO和REAL* 一起进行训练，可以获得最佳效果。
 
 ![](https://github.com/lh641446825/picture/blob/master/QQ%E6%B5%8F%E8%A7%88%E5%99%A8%E6%88%AA%E5%9B%BE20190903215921.png?raw=true)
 
