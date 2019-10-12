@@ -81,7 +81,7 @@
  
 ## 代码
 
-### 环境要求：
+### 环境要求
 
 <font size=4> 
  
@@ -95,7 +95,7 @@
  
  •	cPickle
 
-### 训练：
+### 训练
 
 <font size=4> &#160; &#160; &#160; &#160;训练时会报错：ImportError：No module named ‘visualize’。 
 ![](https://github.com/lh641446825/picture/blob/master/1524330-20190903165228019-1838692003.jpg?raw=true)
